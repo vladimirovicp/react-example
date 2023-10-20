@@ -3,14 +3,15 @@ import {Preloader} from "../components/Preloader";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
+import {RadioDownloadBook} from "../components/RadioDownloadBook"
+
 function Page1() {
 
     const [loading, setLoading] = useState(true);
     const [books, setBooks] = useState([]);
-
-
-    useEffect(() => {
-        axios.get(`./data/books.json`)
+    const downloadDataBooks = (number = '') => {
+        const url = `./data/books${number}.json`
+        axios.get(url)
             .then(response => {
                 setBooks(response.data);
                 setLoading(false);
@@ -19,14 +20,26 @@ function Page1() {
                 console.log(err);
                 setLoading(false);
             });
-    }, []);
+    }
 
+    const selectBook = (number ='') => {
+        setLoading(true);
 
+        switch (number) {
+            case '2' : downloadDataBooks('2');
+            break;
+            case '3' : downloadDataBooks('3');
+            break;
+            default: downloadDataBooks();
+        }
+    }
+
+    useEffect(() => { downloadDataBooks();}, []);
 
     return (
         <div className="App">
             <h1>Page1</h1>
-
+            <RadioDownloadBook selectBook={selectBook}/>
             {loading ? (
                 <Preloader />
             ) : (
