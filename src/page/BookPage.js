@@ -2,30 +2,30 @@ import {Preloader} from "../components/Preloader";
 
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 
-function Page2() {
+function Page() {
 
     const [loading, setLoading] = useState(true);
     const [books, setBooks] = useState([]);
-
-
-    useEffect(() => {
-        axios.get(`./data/books3.json`)
+    const { pageId } = useParams(), // получаем доступ к динамическому параметру с номером страницы из URL
+            path  =  pageId > 1 ?  `../data/books${ pageId }.json` : '../data/books.json';
+    useEffect(() => { // получаем данные на основе этого параметра
+        axios.get(path)
             .then(response => {
                 setBooks(response.data);
                 setLoading(false);
             })
             .catch((err) =>{
-                console.log(err);
                 setLoading(false);
             });
-    }, []);
-
+    } /*, [pageId] */); // необходимо также указать зависимость от параметра, если 
+    // путь к каждой странице задается вручную (page/1, page/2 и т. д вместо page/:pageNum). В противном случае реакт не будет вызывать компонент
 
 
     return (
         <div className="App">
-            <h1>Page 3</h1>
+            <h1>Page {pageId} </h1>
 
             {loading ? (
                 <Preloader />
@@ -63,6 +63,6 @@ function Page2() {
 
         </div>
     );
-}
+};
 
-export default Page2;
+export default Page;

@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from "./components/Nav";
 
 import Home from "./page/Home";
-import BookPage from "./page/Page1";
+import Page from "./page/BookPage";
 
 function App() {
   return (
@@ -14,9 +14,7 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/page-1" element={ <BookPage />} />
-              <Route path="/page-2" element={<BookPage num={2} />} />
-              <Route path="/page-3" element={<BookPage num={3} />} />
+                <Route path="/page/:pageId" element={<Page />} />
             </Routes>
           </div>
         </div>
