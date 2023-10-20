@@ -3,29 +3,27 @@ import {Preloader} from "../components/Preloader";
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-function Page1() {
+function Page1({ pageNum }) {
 
     const [loading, setLoading] = useState(true);
     const [books, setBooks] = useState([]);
-
-
+    
     useEffect(() => {
-        axios.get(`./data/books.json`)
+        axios.get(`./data/books${ pageNum }.json`)
             .then(response => {
                 setBooks(response.data);
                 setLoading(false);
             })
             .catch((err) =>{
-                console.log(err);
                 setLoading(false);
             });
-    }, []);
+    }, [pageNum]);
 
 
 
     return (
         <div className="App">
-            <h1>Page1</h1>
+            <h1>Page1 {pageNum} </h1>
 
             {loading ? (
                 <Preloader />
@@ -63,6 +61,11 @@ function Page1() {
 
         </div>
     );
-}
+};
 
-export default Page1;
+export default function BookPage({ num = '' }) {
+    return (
+      <Page1
+        pageNum={ num } />
+    );
+}
