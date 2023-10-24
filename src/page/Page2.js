@@ -24,7 +24,7 @@ function Page2() {
         <div className="App">
             <h1>Page 2 Save data json to PC</h1>
             <form onSubmit={handleSubmit}>
-            <button type="submit">Save yo PC</button>
+            <button type="submit">Save to PC</button>
             </form>
         </div>
     );
