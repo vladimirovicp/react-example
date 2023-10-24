@@ -6,10 +6,7 @@ const RadioDownloadBook = (props) => {
     const [number, setNumber] = useState('');
 
     const handleBookFilter = (event) =>{
-        const params = {
-            query: `./data/books${event.target.dataset.number}.json` || ""
-          };
-        setQuery(params)
+        setQuery(`./data/books${event.target.dataset.number}.json` || "")
         setNumber(event.target.dataset.number)
     };
 

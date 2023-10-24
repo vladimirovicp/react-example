@@ -6,12 +6,14 @@ import useRequestData from "../utils/useRequestData"
 
 function Page1() {
 
-    const {books, query, setQuery, loading} = useRequestData("./data/books.json");
-
+  //  const {books, query, setQuery, loading} = useRequestData("./data/books.json");
+    const useData = url => useRequestData(url);
+    const [selected, setSelected] = useState('./data/books.json');
+    const { books, getData, loading } = useData(selected);
     return (
         <div className="App">
             <h1>Page1</h1>
-            <RadioDownloadBook selectBook={setQuery}/>
+            <RadioDownloadBook selectBook={getData}/>
             {loading ? (
                 <Preloader />
             ) : (
