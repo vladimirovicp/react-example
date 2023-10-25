@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 
-const RadioDownloadBook = (props) => {
-
-    const {setQuery = Function.prototype} = props;
+function RadioDownloadBook(handler) {
     const [number, setNumber] = useState('');
 
     const handleBookFilter = (event) =>{
-        setQuery(`./data/books${event.target.dataset.number}.json` || "")
+        handler.selectBook(`./data/books${event.target.dataset.number}.json` || "")
         setNumber(event.target.dataset.number)
     };
 

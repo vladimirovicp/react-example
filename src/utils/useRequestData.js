@@ -1,12 +1,11 @@
-import React, {useState, useEffect, useCallback} from "react";
+import {useState, useEffect} from "react";
 import axios from 'axios';
 
 export default function useRequestData(source) {
     const [loading, setLoading] = useState(true);
     const [books, setBooks] = useState([]);
     
-    const getData = useCallback(() => {
-        console.log('fg')
+    useEffect(() => {
         axios.get(source)
             .then(response => {
                 setBooks(response.data);
@@ -19,10 +18,8 @@ export default function useRequestData(source) {
             });
         }, [source])
     
-    useEffect(() => {
-        getData(source);
-      }, [getData, source]);
+
     
     
-    return {books, getData, loading}
+    return {books, loading}
 }

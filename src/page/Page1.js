@@ -1,19 +1,18 @@
 import {Preloader} from "../components/Preloader";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {RadioDownloadBook} from "../components/RadioDownloadBook"
 import useRequestData from "../utils/useRequestData"
 
 function Page1() {
+    const [ url, setUrl ] = useState('./data/books.json');
+    const { books, loading } = useRequestData(url);
+    function handleUrl(e) { console.log(e, 'handler'); setUrl(e) }
 
-  //  const {books, query, setQuery, loading} = useRequestData("./data/books.json");
-    const useData = url => useRequestData(url);
-    const [selected, setSelected] = useState('./data/books.json');
-    const { books, getData, loading } = useData(selected);
     return (
         <div className="App">
             <h1>Page1</h1>
-            <RadioDownloadBook selectBook={getData}/>
+            <RadioDownloadBook selectBook={handleUrl}/>
             {loading ? (
                 <Preloader />
             ) : (
