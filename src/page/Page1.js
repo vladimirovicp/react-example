@@ -7,7 +7,7 @@ import useRequestData from "../utils/useRequestData"
 function Page1() {
     const [ url, setUrl ] = useState('./data/books.json');
     const { books, loading } = useRequestData(url);
-    function handleUrl(e) { console.log(e, 'handler'); setUrl(e) }
+    function handleUrl(e) { setUrl(e) }
 
     return (
         <div className="App">
