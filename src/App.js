@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 
 import Home from "./page/Home";
 import Page1 from "./page/Page1";
+import Page1n1 from "./page/Page1_1";
 import Page2 from "./page/Page2";
 import Page3 from "./page/Page3";
 
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/page-1" element={<Page1 />} />
+              <Route path="/page-1-1" element={<Page1n1 />} />
               <Route path="/page-2" element={<Page2 />} />
               <Route path="/page-3" element={<Page3 />} />
             </Routes>
